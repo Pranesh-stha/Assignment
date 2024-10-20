@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link id="theme" rel="stylesheet" 
+        type="text/css" href="dark.css" /> 
+  <title>Calculator</title>
+</head>
+<body>
+  <form>
+  <div class="tool">
+    <div class="screen">
+      <div class="few">
+      <div class="toggle-switch">
+        <label class="switch-label" >
+          <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </div>  
+      </div>
+      <input type="text" name="display" class="inp" style=" margin-top: 0px;" disabled>
+    </div>
+    <div class="keys">
+      <div >
+        <input type="button" class="key" value="1" onclick="display.value += '1' ">
+        <input type="button" class="key" value="2" onclick="display.value += '2' ">
+        <input type="button" class="key" value="3" onclick="display.value += '3' ">
+        <input type="button" style="color: rgb(15, 174, 174);;" class="key" value="+" onclick="display.value += '+' ">
+      </div>
+      <div>
+        <input type="button" class="key" value="4" onclick="display.value += '4' ">
+        <input type="button" class="key" value="5" onclick="display.value += '5' ">
+        <input type="button" class="key" value="6" onclick="display.value += '6' ">
+        <input type="button" style="color: rgb(15, 174, 174);" class="key" value="-" onclick="display.value += '-' ">
+      </div>
+      <div>
+        <input type="button" class="key" value="7" onclick="display.value += '7' ">
+        <input type="button" class="key" value="8" onclick="display.value += '8' ">
+        <input type="button" class="key" value="9" onclick="display.value += '9' ">
+        <input type="button" style="color: rgb(15, 174, 174);;" class="key" value="*" onclick="display.value += '*' ">
+      </div>
+      <div>
+        <input type="button" class="key" value="." onclick="display.value += '.' ">
+        <input type="button" class="key" value="0" onclick="display.value += '0' ">
+        <input type="button" style="color: rgb(15, 174, 174);;" class="key" value="BS" onclick="display.value = display.value.toString().slice(0,-1) ">
+        <input type="button" style="color: rgb(15, 174, 174);;" class="key" value="/" onclick="display.value += '/'">
+        
+      </div>
+
+      <div>
+        <input type="button" style="color: rgb(15, 174, 174);;" class="key" value="AC" onclick="display.value = '' ">
+        <input type="button" class="key" value="00" onclick="display.value += '00' ">
+        
+        <input type="button" class="key" style="width: 120px; color: rgb(15, 174, 174);" value="=" 
+               onclick="try { addToHistory(display.value + ' = ' + eval(display.value)); display.value = eval(display.value); } 
+                        catch (e) { display.value = 'Error'; }">
+      </div>
+      
+    </div>
+  </div>  
+  </form>
+
+  <div class="history-container">
+    <h3>History</h3>
+    <div id="history" class="history"></div>
+  </div>
+
+  <script> 
+    function toggleTheme() { 
+        var theme = document.getElementsByTagName('link')[0]; 
+        if (theme.getAttribute('href') == 'light.css') { 
+            theme.setAttribute('href', 'dark.css'); 
+        } else { 
+            theme.setAttribute('href', 'light.css'); 
+        } 
+    } 
+
+    function addToHistory(entry) {
+    const history = document.getElementById('history');
+    const newHistoryItem = document.createElement('div');
+    newHistoryItem.textContent = entry;
+    history.appendChild(newHistoryItem);
+  }
+</script> 
+</body>
+</html>
